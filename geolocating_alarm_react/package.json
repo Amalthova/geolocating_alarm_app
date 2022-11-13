@@ -12,10 +12,21 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "startreact": "react-scripts start",
+    "buildreact": "react-scripts build",
+    "testreact": "react-scripts test",
+    "ejectreact": "react-scripts eject",
+    
+    "start": "node ./server/index.js",
+    "concurrent": "concurrently \"npm run dev\" \"cd client && npm start\"" ,
+    "dev": "nodemon ./server/index.js",
+    "build": "npm install && cd client && npm install && npm run build",
+    "make:migration": "knex migrate:make",
+    "migrate": " knex  migrate:latest",
+    "make:seed": "knex seed:make",
+    "seed": "knex seed:run",
+    "rollback": "npx knex migrate:rollback",
+    "reset-database": "npm run rollback && npm run migrate && npm run seed"
   },
   "eslintConfig": {
     "extends": [
