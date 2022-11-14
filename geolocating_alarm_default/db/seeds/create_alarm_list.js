@@ -16,7 +16,7 @@ exports.seed = async function(knex) {
 
     {
       alarm_name: "Null City",
-      alarm_days: 'null',
+      alarm_days: '2022-02-22',
       alarm_time: '00:00:00',
       alarm_latitude: '0',
       alarm_longitude: '0'
