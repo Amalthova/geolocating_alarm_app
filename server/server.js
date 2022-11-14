@@ -42,7 +42,6 @@ function setupServer () {
         .where({"id": id})
         .update(changesToApply)
         .then(response.status(200).send("update success"));
-
     } catch(err) {
       response.status(500).send(err);
     }
