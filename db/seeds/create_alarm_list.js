@@ -11,7 +11,8 @@ exports.seed = async function(knex) {
       // alarm_days: 'null', //should work even if null.  It should just run once, then turn off.
       alarm_time: '00:00:00',
       alarm_latitude: '51.4825766',
-      alarm_longitude: '-0.0076589'
+      alarm_longitude: '-0.0076589',
+      alarm_status: 'false'
     },
 
     {
@@ -19,7 +20,8 @@ exports.seed = async function(knex) {
       alarm_days: '2022-02-22',
       alarm_time: '00:00:00',
       alarm_latitude: '0',
-      alarm_longitude: '0'
+      alarm_longitude: '0',
+      alarm_status: 'false'
     }
     
   ]);
