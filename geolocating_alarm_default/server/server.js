@@ -9,39 +9,39 @@ function setupServer () {
     response.status(200).send("hello")
   })
 
-  app.get('/api/songs', async (request, response) => {
+  app.get('/api/alarms', async (request, response) => {
     try {
-      const songs = await db('songs')
+      const alarm = await db('alarms')
         .select('*')
         .timeout(1500);
-      songs.length > 0
-        ? response.status(200).send(songs)
-        : response.status(404).send("no songs found");
+      alarm.length > 0  //if array greater than 0
+        ? response.status(200).send(alarm) // send array
+        : response.status(404).send("no alarm found"); // else, send "nothing found"
     } catch(err) {
       response.status(500).send(err);
     }
   })
   
-  app.post('/api/songs', async (request, response) => {
-    let newSong = request.body;
+  app.post('/api/alarms', async (request, response) => {
+    let newAlarm = request.body;
     try {
-      await db('songs')
-        .insert(newSong);
-      response.status(200).send("New Song Added Committed")
+      await db('alarms')
+        .insert(newAlarm);
+      response.status(200).send("New alarm added")
     } catch(err) {
       response.status(500).send(err);
     }
   })
 
-  app.patch('/api/songs/:id', async (request, response) => { //update
+  app.patch('/api/alarms/:id', async (request, response) => { //update
     let changesToApply = request.body;
     let id = request.params.id;
-    console.log(songToUpdate);
+    console.log(changesToApply);
     try {
-      await db('songs')
+      await db('alarms')
         .where("id", id).update(changesToApply);
 
-      if (songs) {response.status(200).send(songs)
+      if (alarms) {response.status(200).send(alarms)
       response.status(200).send("Database has been Updated")
       } else {
         response.status(404).send("Could not find item to update")
@@ -51,33 +51,33 @@ function setupServer () {
     }
   })
 
-  app.delete('/api/songs/:id', async (request, response) => {
+  app.delete('/api/alarms/:id', async (request, response) => {
     // let deleteTarget = request.params.id;
     try {
-      await db('songs')
+      await db('alarms')
         .select({'id': request.params.id})
         .del()
-        .then(response.status(200).send("song deleted") );
+        .then(response.status(200).send("alarm deleted") );
     } catch(err) { 
       response.status(500).send(err);
     }
   })
 
-  app.get('/api/songs/:id', async (request, response) => { // FindbyID
+  app.get('/api/alarms/:id', async (request, response) => { // FindbyID
     try {
       const query = request.params.id; //Get id from request
       // const targetId = 
-      const songs = await db('songs')
-        .select(songs.id)
+      const alarms = await db('alarms')
+        .select(alarms.id)
         .timeout(1500);
     } catch(err) {
       response.status(500).send(err);
     }
   })
 
-  app.get('/api/songs/all', async (request, response) => { // FindAll
+  app.get('/api/alarms/all', async (request, response) => { // FindAll
     try {
-      await db('songs')
+      await db('alarms')
     } catch(err) {
       response.status(500).send(err);
     }
