@@ -39,23 +39,21 @@ function setupServer () {
     console.log(changesToApply);
     try {
       await db('alarms')
-        .where("id", id).update(changesToApply);
+        .where({"id": id})
+        .update(changesToApply)
+        .then(response.status(200).send("update success"));
 
-      if (alarms) {response.status(200).send(alarms)
-      response.status(200).send("Database has been Updated")
-      } else {
-        response.status(404).send("Could not find item to update")
-      }
     } catch(err) {
       response.status(500).send(err);
     }
   })
 
   app.delete('/api/alarms/:id', async (request, response) => {
-    // let deleteTarget = request.params.id;
+    console.log("hello");
+    let deleteTarget = request.params.id;
     try {
       await db('alarms')
-        .select({'id': request.params.id})
+        .where({id: deleteTarget})
         .del()
         .then(response.status(200).send("alarm deleted") );
     } catch(err) { 
@@ -66,10 +64,12 @@ function setupServer () {
   app.get('/api/alarms/:id', async (request, response) => { // FindbyID
     try {
       const query = request.params.id; //Get id from request
-      // const targetId = 
-      const alarms = await db('alarms')
-        .select(alarms.id)
-        .timeout(1500);
+      const selectedAlarm = await db('alarms')
+        .where( 'id', query )
+        
+      selectedAlarm.length > 0  //if something is in the array
+      ? response.status(200).send(selectedAlarm) // send array
+      : response.status(404).send("no alarm found", query); // else, send "nothing found"
     } catch(err) {
       response.status(500).send(err);
     }
