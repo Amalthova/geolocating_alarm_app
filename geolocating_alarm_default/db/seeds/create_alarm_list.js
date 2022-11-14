@@ -6,11 +6,21 @@ exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('alarms').del()
   await knex('alarms').insert([
-    {alarm_name: 'Greenwich'},
-    {alarm_days: 'null'},
-    {alarm_time: '00:00:00'},
-    {alarm_latitude: '51.4825766'},
-    {alarm_longitude: '-0.0076589'},
+    {
+      alarm_name: 'Greenwich',
+      // alarm_days: 'null', //should work even if null.  It should just run once, then turn off.
+      alarm_time: '00:00:00',
+      alarm_latitude: '51.4825766',
+      alarm_longitude: '-0.0076589'
+    },
+
+    {
+      alarm_name: "Null City",
+      alarm_days: 'null',
+      alarm_time: '00:00:00',
+      alarm_latitude: '0',
+      alarm_longitude: '0'
+    }
     
   ]);
 };
