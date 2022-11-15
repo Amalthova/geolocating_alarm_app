@@ -5,35 +5,42 @@ import axios from 'axios';
 
 
 export default function Inputform(props) {
-  const {
-    alarmNameValue,
-    alarmTimeValue,
-    alarmDays,
-    alarmLatitude,
-    alarmLongitude,
-    alarmStatus
-  } = props;
+  // const {
+  //   alarmNameString,
+  //   alarmTimeDate,
+  //   alarmDaysString,
+  //   alarmLatitudeDecimal,
+  //   alarmLongitudeDecimal,
+  //   alarmStatusBoolean
+  // } = props;
 
   const id = useId();
-  const [alarmName, setAlarmName] = useState([]);
-  const [alarmTime, setAlarmTime] = useState([]);
-  
+  const [alarmNameString, setAlarmName] = useState();
+  const [alarmDaysString, setAlarmDays] = useState(); //THe choice of days to repeat
 
+  const [alarmTimeDate, setAlarmTime] = useState(); //Time
+
+  const [alarmLatitudeDecimal, setAlarmLatitude] = useState();
+  const [alarmLongitudeDecimal, setAlarmLongitude] = useState();
+  const [alarmStatusBoolean, setAlarmStatus] = useState();
+  const inputChange = ()=>{
+    
+  }
   
   async function createNewAlarm() {
 
-    console.log(alarmNameValue);
-    console.log(alarmTimeValue);
+    console.log(alarmNameString);
+    console.log(alarmTimeDate);
     
     console.log("This is being triggered and something broke if you see it more than once");
 
     await axios.post('/api/alarms', {
-      alarm_name: alarmNameValue,
-      alarm_days: alarmDays,
-      alarm_time: alarmTimeValue,
-      alarm_latitude: alarmLatitude,
-      alarm_longitude: alarmLongitude,
-      alarm_status: alarmStatus
+      alarm_name: alarmNameString,
+      alarm_days: alarmDaysString,
+      alarm_time: alarmTimeDate,
+      alarm_latitude: alarmLatitudeDecimal,
+      alarm_longitude: alarmLongitudeDecimal,
+      alarm_status: alarmStatusBoolean
     })
     .then(res => {console.log(res)});
 
@@ -43,10 +50,10 @@ export default function Inputform(props) {
   return (
     <div>
       <form className="newAlarmForm">
-        <input className="" type="text" placeholder="Alarm Name" value={ alarmNameValue } onChange={(e) => setAlarmName(e.target.value)}></input>
-        <input className="" type="time" placeholder="Alarm Time" value={ alarmTimeValue } onChange={(e) => setAlarmTime(e.target.value)}></input>
+        <input className="" type="text" placeholder="Alarm Name" value={ alarmNameString } onChange={(e) => setAlarmName(e.target.value)}></input>
+        <input className="" type="time" placeholder="Alarm Time" value={ alarmTimeDate } onChange={(e) => setAlarmTime(e.target.value)}></input>
         <input name="" className="" type="checkbox" placeholder='monday'></input>
-        <button className="" type="button" onClick={createNewAlarm()}> Create Alarm </button>
+        <button className="" type="button" onClick={createNewAlarm}> Create Alarm </button>
 
       </form>
     </div>

@@ -36,7 +36,7 @@ function App() {
       { alarmList }
       <p>{`${ dateNow }`}</p>
       <h1>hello there</h1>
-    <Inputform></Inputform>
+      <Inputform></Inputform>
     </div>
   );
 }
