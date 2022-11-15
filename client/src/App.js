@@ -34,23 +34,25 @@ function App() {
     setAlarms(retrievedAlarms.data);
   }
 
-  class Board extends react.component {
-    renderSquare(i) {
-      return <Square value={i} />
-    }
-  }
-
   return (
     <div>
       <h1>yeeee</h1>
       { alarmList }
       <p>{`${ dateNow }`}</p>
-      <form>
-        <input/>
-        <button className="square" onClick={function() { console.log('click'); }}>
-          {this.props.value}
+      
+      <form className="newAlarmForm">
+        
+        <input className="" type="text" placeholder="Alarm Name" ></input>
+        <button className="dayOptions" onClick={(event) => {event.preventDefault(); this.setState({value: "Monday:True"}) }}>
+          Alarm Every Sunday{/* {this.state.value} */}
         </button>
-        <button> Monday </button>
+        <button className="dayOptions" onClick={(event) => {event.preventDefault(); this.setState({value: "Monday:True"}) }}>
+          Alarm Every Monday{/* {this.state.value} */}
+        </button>
+        <input className="" type="time" placeholder="Alarm Time" ></input>
+       
+        <button> Create Alarm </button>
+
       </form>
     </div>
   );
