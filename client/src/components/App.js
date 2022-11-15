@@ -11,8 +11,7 @@ function App() {
     return <p>{ oneAlarm.alarm_name }</p>
   })
   
-  // const createNewAlarm = () => {
-  // }
+
 
   useState(() => {
 

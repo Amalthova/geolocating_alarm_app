@@ -23,15 +23,38 @@ export default function Inputform(props) {
   const [alarmLatitudeDecimal, setAlarmLatitude] = useState();
   const [alarmLongitudeDecimal, setAlarmLongitude] = useState();
   const [alarmStatusBoolean, setAlarmStatus] = useState();
-  const inputChange = ()=>{
-    
-  }
+
+  const [geoLocationStatus, setGeoStatus] = useState();
   
+
+  const geoLocationAvailabilityChecker = async () => {      //Geolocation
+    if ("geolocation" in navigator) {
+      console.log("Location Services are available");
+      setGeoStatus(true);
+
+      navigator.geolocation.getCurrentPosition( await function(position) {
+        console.log(position);
+        setAlarmLatitude(position.coords.latitude);
+        setAlarmLongitude(position.coords.longitude);
+        return position;
+    })
+
+
+    } else {
+      console.log("Location Services are NOT available");
+      setGeoStatus(false);
+    }
+  }
+
   async function createNewAlarm() {
+ 
+    await geoLocationAvailabilityChecker();
+
 
     console.log(alarmNameString);
     console.log(alarmTimeDate);
-    
+    console.log(alarmLatitudeDecimal);
+    console.log(alarmLongitudeDecimal);
     console.log("This is being triggered and something broke if you see it more than once");
 
     await axios.post('/api/alarms', {
@@ -44,6 +67,9 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
+    await axios.get('/api/alarms', {
+      
+    })
 
   }
 
