@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from 'react';
+import { useState, useEffect, useRef, useId } from 'react';
 import axios from 'axios';
 import '../styles/App.css';
 import Inputform from "./Inputform";
@@ -14,7 +14,13 @@ function App() {
   // const createNewAlarm = () => {
   // }
 
-  useEffect(() => {
+  useState(() => {
+
+    async function getAlarms() {
+      const retrievedAlarms = await axios.get('/api/alarms');
+      setAlarms(retrievedAlarms.data);
+    }
+
     //Create clock that updates
     const currentDateAndTime = setInterval(() => {
       setDate(new Date()); 
@@ -22,13 +28,7 @@ function App() {
     return () => {
       clearInterval(currentDateAndTime);
     };
-
   }, [])
-
-  async function getAlarms() {
-    const retrievedAlarms = await axios.get('/api/alarms');
-    setAlarms(retrievedAlarms.data);
-  }
 
   return (
     <div>
