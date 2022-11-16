@@ -25,6 +25,8 @@ function setupServer () {
   app.post('/api/alarms', async (request, response) => {
     let newAlarm = request.body;
     try {
+      //check alarm data
+      
       await db('alarms')
         .insert(newAlarm);
       response.status(200).send("New alarm added")
