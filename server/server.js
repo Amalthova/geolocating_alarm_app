@@ -29,7 +29,7 @@ function setupServer () {
       
       await db('alarms')
         .insert(newAlarm);
-      response.status(200).send("New alarm added")
+      response.status(200).send(`New alarm added with PLACEHOLDER id${ 001 } `)
     } catch(err) {
       response.status(500).send(err);
     }
