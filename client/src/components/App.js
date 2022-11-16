@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useId } from 'react';
 import axios from 'axios';
 import '../styles/App.css';
 import Inputform from "./Inputform";
-import alarmTracker from "./Alarmtracker"
+import Alarmtracker from "./Alarmtracker"
 
 function App() {
   const [alarms, setAlarms] = useState([]);
@@ -36,7 +36,7 @@ function App() {
       { alarmList }
       <p>{`${ dateNow }`}</p>
       <h1>hello there</h1>
-      <alarmTracker></alarmTracker>
+      <Alarmtracker></Alarmtracker>
       <Inputform></Inputform>
     </div>
   );
