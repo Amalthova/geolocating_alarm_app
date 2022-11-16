@@ -71,12 +71,14 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
-  await api.get('/api/alarms').then(function (response) {console.log(response.data);})
+
   } catch(error) {
     console.error(error.response.data);
   }
 
+  //
 
+  //
   } 
 
 
