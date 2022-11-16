@@ -3,6 +3,8 @@ const e = require("express");
 const express = require("express");
 const db = require('../db/knex');
 
+
+
 function setupServer () {
   const app = express();
   app.use(express.json());
@@ -10,7 +12,17 @@ function setupServer () {
     response.status(200).send("hello")
   })
 
-  app.use(cors())
+  app.use(cors({
+    allowedOrigins: [
+        'github.com', 'google.com', '.render.com:*'
+    ]
+}))
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
   app.get('/api/alarms', async (request, response) => {
     try {
