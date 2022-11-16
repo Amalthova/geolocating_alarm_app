@@ -1,3 +1,4 @@
+const cors = require('express-cors');
 const e = require("express");
 const express = require("express");
 const db = require('../db/knex');
@@ -8,6 +9,12 @@ function setupServer () {
   app.get("/api/test", (request, response) => {
     response.status(200).send("hello")
   })
+
+  app.use(cors({
+    allowedOrigins: [
+        'github.com', 'google.com', 'render.com'
+    ]
+}))
 
   app.get('/api/alarms', async (request, response) => {
     try {
