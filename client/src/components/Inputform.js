@@ -1,10 +1,10 @@
 
-import { useState, useEffect, useRef, useId } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+// import axios from 'axios';
 import api from '../index.js';
 
 
-export default function Inputform(props) {
+export default function Inputform() {
   // const {
   //   alarmNameString,
   //   alarmTimeDate,
@@ -14,7 +14,7 @@ export default function Inputform(props) {
   //   alarmStatusBoolean
   // } = props;
 
-  const id = useId();
+  // const id = useId();
   const [alarmNameString, setAlarmName] = useState();
   const [alarmDaysString, setAlarmDays] = useState(); //THe choice of days to repeat
 
@@ -25,7 +25,9 @@ export default function Inputform(props) {
   const [alarmStatusBoolean, setAlarmStatus] = useState();
 
   const [geoLocationStatus, setGeoStatus] = useState();
-  
+  setAlarmDays("monday");
+  setAlarmStatus(false);
+
 
   const geoLocationAvailabilityChecker = async () => {      //Geolocation
     if ("geolocation" in navigator) {
@@ -47,7 +49,7 @@ export default function Inputform(props) {
   }
 
   async function createNewAlarm() {
- 
+    console.log(geoLocationStatus);
     await geoLocationAvailabilityChecker();
 
 
