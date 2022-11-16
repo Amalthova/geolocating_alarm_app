@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef, useId } from 'react';
 import axios from 'axios';
-
+import api from '../index.js';
 
 
 export default function Inputform(props) {
@@ -57,7 +57,7 @@ export default function Inputform(props) {
     console.log(alarmLongitudeDecimal);
     console.log("This is being triggered and something broke if you see it more than once");
 
-    await axios.post('/api/alarms', {
+    await api.post('/api/alarms', {
       alarm_name: alarmNameString,
       alarm_days: alarmDaysString,
       alarm_time: alarmTimeDate,
@@ -67,9 +67,9 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
-    await axios.get('/api/alarms', {
-      
-    })
+    // await axios.get('/api/alarms', {
+
+    // })
 
   }
 
