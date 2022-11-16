@@ -10,11 +10,7 @@ function setupServer () {
     response.status(200).send("hello")
   })
 
-  app.use(cors({
-    allowedOrigins: [
-        'github.com', 'google.com', '.render.com:*'
-    ]
-}))
+  app.use(cors())
 
   app.get('/api/alarms', async (request, response) => {
     try {
