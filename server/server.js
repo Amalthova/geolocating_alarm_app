@@ -12,7 +12,7 @@ function setupServer () {
 
   app.use(cors({
     allowedOrigins: [
-        'github.com', 'google.com', 'render.com'
+        'github.com', 'google.com', '.render.com:*'
     ]
 }))
 
