@@ -1,6 +1,6 @@
 
 import { useState, useId } from 'react';
-import axios from 'axios';
+
 import api from '../index.js';
 
 
@@ -71,7 +71,7 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
-    await axios.get('/api/alarms', {
+    await api.get('/api/alarms', {
 
     })
 
