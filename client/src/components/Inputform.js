@@ -1,10 +1,10 @@
 
-import { useState } from 'react';
-// import axios from 'axios';
+import { useState, useId } from 'react';
+import axios from 'axios';
 import api from '../index.js';
 
 
-export default function Inputform() {
+export default function Inputform(props) {
   // const {
   //   alarmNameString,
   //   alarmTimeDate,
@@ -14,7 +14,7 @@ export default function Inputform() {
   //   alarmStatusBoolean
   // } = props;
 
-  // const id = useId();
+  const id = useId();
   const [alarmNameString, setAlarmName] = useState();
   const [alarmDaysString, setAlarmDays] = useState(); //THe choice of days to repeat
 
@@ -25,8 +25,6 @@ export default function Inputform() {
   const [alarmStatusBoolean, setAlarmStatus] = useState();
 
   const [geoLocationStatus, setGeoStatus] = useState();
-  setAlarmDays("monday");
-  setAlarmStatus(false);
 
 
   const geoLocationAvailabilityChecker = async () => {      //Geolocation
@@ -49,9 +47,13 @@ export default function Inputform() {
   }
 
   async function createNewAlarm() {
-    console.log(geoLocationStatus);
-    await geoLocationAvailabilityChecker();
-
+      
+  setAlarmDays("Monday");
+  setAlarmStatus(false);
+  
+  await geoLocationAvailabilityChecker();
+  console.log(geoLocationStatus);
+  console.log(id);
 
     console.log(alarmNameString);
     console.log(alarmTimeDate);
@@ -69,9 +71,9 @@ export default function Inputform() {
     })
     .then(res => {console.log(res)});
 
-    // await axios.get('/api/alarms', {
+    await axios.get('/api/alarms', {
 
-    // })
+    })
 
   }
 
