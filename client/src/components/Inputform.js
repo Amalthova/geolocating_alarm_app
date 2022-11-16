@@ -59,8 +59,8 @@ export default function Inputform(props) {
     console.log(alarmTimeDate);
     console.log(alarmLatitudeDecimal);
     console.log(alarmLongitudeDecimal);
-    console.log("This is being triggered and something broke if you see it more than once");
 
+  try{
     await api.post('/api/alarms', {
       alarm_name: alarmNameString,
       alarm_days: alarmDaysString,
@@ -71,11 +71,14 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
-    await api.get('/api/alarms', {
-
-    })
-
+  await api.get('/api/alarms').then(function (response) {console.log(response.data);})
+  } catch(err) {
+    console.log(err);
   }
+
+
+  } 
+
 
   return (
     <div>
