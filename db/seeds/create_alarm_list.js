@@ -16,14 +16,13 @@ exports.seed = async function(knex) {
     },
 
     {
-      alarm_name: "Null City",
-      alarm_days: '2022-02-22',
-      alarm_time: '00:00:00',
-      alarm_latitude: '0',
-      alarm_longitude: '0',
+      alarm_name: "CC",
+      alarm_days: 'null',
+      alarm_time: '09:15:00',
+      alarm_latitude: '35.6579296',
+      alarm_longitude: '139.7276436',
       alarm_status: 'false'
     }
-    
   ]);
 };
 

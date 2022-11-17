@@ -1,8 +1,6 @@
-
 import { useState, useId } from 'react';
 
 import api from '../index.js';
-
 
 export default function Inputform(props) {
   // const {
@@ -26,7 +24,6 @@ export default function Inputform(props) {
 
   const [geoLocationStatus, setGeoStatus] = useState();
 
-
   const geoLocationAvailabilityChecker = async () => {      //Geolocation
     if ("geolocation" in navigator) {
       console.log("Location Services are available");
@@ -39,7 +36,6 @@ export default function Inputform(props) {
         return position;
     })
 
-
     } else {
       console.log("Location Services are NOT available");
       setGeoStatus(false);
@@ -47,18 +43,18 @@ export default function Inputform(props) {
   }
 
   async function createNewAlarm() {
-      
-  setAlarmDays("Monday");
-  setAlarmStatus(false);
   
   await geoLocationAvailabilityChecker();
   console.log(geoLocationStatus);
   console.log(id);
 
-    console.log(alarmNameString);
-    console.log(alarmTimeDate);
-    console.log(alarmLatitudeDecimal);
-    console.log(alarmLongitudeDecimal);
+  console.log(alarmNameString);
+  console.log(alarmTimeDate);
+  console.log(alarmLatitudeDecimal);
+  console.log(alarmLongitudeDecimal);
+
+  setAlarmDays("None");
+  setAlarmStatus(false);
 
   try{
     await api.post('/api/alarms', {
@@ -71,16 +67,11 @@ export default function Inputform(props) {
     })
     .then(res => {console.log(res)});
 
-
   } catch(error) {
     console.error(error.response.data);
   }
 
-  //
-
-  //
   } 
-
 
   return (
     <div>
